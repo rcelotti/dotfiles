@@ -1,0 +1,36 @@
+# getter and setter
+snippet gs
+	const ${1:/* data type */} get${2:/* var name */}() const {
+		return m$2;
+	}
+	
+	void set$2(const $1 value) {
+		m$2 = value;
+	}
+
+	${3}
+# getter and setter reference
+snippet gsr
+	const ${1:/* data type */}& get${2:/* var name */}() const {
+		return m$2;
+	}
+	
+	void set$2(const $1& value) {
+		m$2 = value;
+	}
+
+	${3}
+# try catch block
+snippet tc
+	try {
+		${1:/* code */}
+	}
+	catch (Exception& e) {
+	}
+# typedef of a smart pointer
+snippet tsp
+	typedef std::tr1::shared_ptr<${1:/* type */}> ${2:/* class */}Ptr;
+# typedef of a smart const pointer
+snippet tsp
+	typedef std::tr1::shared_ptr<const ${1:/* type */}> ${2:/* class */}Ptr;
+

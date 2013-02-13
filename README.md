@@ -1,6 +1,7 @@
 Installation:
 
-    git clone git://github.com/rcelotti/dotfiles.git ~/dotfiles
+    cd ~
+    git clone https://github.com/rcelotti/dotfiles.git ~/dotfiles
 
 Create symlinks:
 
@@ -10,6 +11,25 @@ Create symlinks:
 
 Switch to the `~/.vim` directory, and fetch submodules:
 
-    cd ~/.vim
+    cd ~/dotfiles
     git submodule init
     git submodule update
+
+
+To add submodule:
+    cd ~/dotfiles
+    git submodule add https://github.com/godlygeek/tabular.git vim/bundle/vim-tabular
+    git add .
+    git commit -m "Added tabular submodule"
+
+Upgrading a plugin bundle:
+    
+    cd ~/.vim/bundle/fugitive
+    git pull origin master
+
+Upgrading all submodules
+
+    
+    cd ~/dotfiles
+    git submodule foreach git pull origin master
+

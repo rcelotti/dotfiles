@@ -9,27 +9,13 @@ Create symlinks:
     ln -s ~/dotfiles/gvimrc ~/.gvimrc
     ln -s ~/dotfiles/vim ~/.vim
 
-Switch to the `~/.vim` directory, and fetch submodules:
+Switch to the "~/dotfiles" directory, and fetch vundle:
 
     cd ~/dotfiles
-    git submodule init
-    git submodule update
+    git clone http://github.com/gmarik/vundle.git ./vim/bundle/vundle
 
-
-To add submodule:
-    cd ~/dotfiles
-    git submodule add https://github.com/godlygeek/tabular.git vim/bundle/vim-tabular
-    git add .
-    git commit -m "Added tabular submodule"
-
-Upgrading a plugin bundle:
+Start vim and run:
+    :BundleInstall
+or, from command line, run:
+    vim +BundleInstall +qall
     
-    cd ~/.vim/bundle/fugitive
-    git pull origin master
-
-Upgrading all submodules
-
-    
-    cd ~/dotfiles
-    git submodule foreach git pull origin master
-

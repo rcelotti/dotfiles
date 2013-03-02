@@ -93,8 +93,11 @@ Bundle 'scrooloose/nerdtree.git'
 " (such as a bash shell in linux) inside vim
 Bundle 'rson/vim-conque.git'
 
-" solarized colors theme
+" colors theme
 Bundle 'altercation/vim-colors-solarized.git'
+Bundle 'flazz/vim-colorschemes'
+Bundle 'ColorSchemeMenuMaker'
+Bundle 'desert-warm-256'
 
 " minibufexpl.vim - Elegant buffer explorer - takes very little screen space
 "Bundle 'fholgado/minibufexpl.vim.git'
@@ -500,7 +503,7 @@ if &t_Co > 2 || has("gui_running")
     set t_Co=256
     " Switch on syntax highlighting.
     syntax on
-    set background=dark
+    set background=light
     " load color scheme
     "colorscheme wombat256mod
     "colorscheme default

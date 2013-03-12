@@ -569,7 +569,7 @@ let g:Powerline_symbols = 'unicode'
 " }}}
 
 " Localvimrc {{{
-let g:localvimrc_whitelist='/home/roberto/Progetti/movendo/.*'
+"let g:localvimrc_whitelist=''
 let g:localvimrc_sandbox=0
 " }}}
 
@@ -1567,9 +1567,11 @@ let g:clang_complete_copen = 0
 let g:clang_complete_macros = 1
 let g:clang_complete_patterns = 1
 " custom build of clang
-"let g:clang_exec = '/home/roberto/src/llvm/build/bin/clang'
+"let g:clang_exec = '~/src/llvm/build/bin/clang'
 " let g:clang_exec = '/usr/bin/clang'
 let g:clang_use_library = 1
-let g:clang_library_path = '/home/roberto/src/llvm/llvm/Release+Asserts/lib/'
+"let g:clang_debug = 1
+"let g:clang_library_path = '~/src/llvm/llvm/Release+Asserts/lib/'
+let g:clang_library_path = '/usr/lib'
 "}}}
 

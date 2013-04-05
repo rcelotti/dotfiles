@@ -31,6 +31,141 @@ snippet tc
 snippet tsp
 	typedef std::tr1::shared_ptr<${1:/* type */}> ${2:/* class */}Ptr;
 # typedef of a smart const pointer
-snippet tsp
+snippet tspc
 	typedef std::tr1::shared_ptr<const ${1:/* type */}> ${2:/* class */}Ptr;
+
+
+
+
+
+snippet òfor Ciclo for normale
+	for (${1:/* type */} ${2:i} = ${3:/* init */} ; $2${4:condition}; ++$2) {
+		${5:/* cursor */}
+	}
+snippet òfori
+	for (${1:size_t} i = 0; i < ${2:/* max */}; ++i) {
+		${3:/* code */}
+	}
+snippet òforit
+	for (${1:/* type */}::iterator ${2:it} = ${3:/* container */}.begin(); $2 != $3.end(); ++$2) {
+		${4:/* code */}
+	}
+snippet òforcit
+	for (${1:/* type */}::const_iterator ${2:it} = ${3:/* container */}.begin(); $2 != $3.end(); ++$2) {
+		${4:/* code */}
+	}
+snippet òwhile
+	while (${1:/* condition */}) {
+		${2:/* code */}
+	}
+snippet òdowhile
+	do {
+		${2:/* code */}
+	} while (${1:/* condition */});
+snippet òif
+	if (${1:/* condition */}) {
+		${2:/* code */}
+	}
+snippet òifel
+	if (${1:/* condition */}) {
+		${2:/* code */}
+	} 
+	else {
+		
+	}
+snippet òifelif
+	if (${1:/* condition */}) {
+		${3:/* code */}
+	} 
+	else if (${2:/* condition */}) {
+
+	}
+snippet òcl
+	class ${1:/* name */} {
+	public:
+		$1(${2:/* code */});
+	};
+snippet òstr
+	struct ${1:/* name */} {
+		${2:/* code */}
+	};
+snippet òns
+	namespace ${1:/* name */} {
+	${2:/* code */}
+	}
+snippet òenum
+	enum ${1:/* name */} {
+		${2:/* code */}
+	};
+snippet òfn
+	${1:void} ${2:/* name */}(${3:/* args */}) {
+		${4:/* code */}
+	}
+snippet òfnc
+	${1:void} ${2:/* name */}(${3:/* args */}) const {
+		${4:/* code */}
+	}
+snippet òtrycatch
+	try {
+		${1:/* code */}
+	} 
+	catch (exception& ex) {
+	}
+snippet òswitch
+	switch (${1:/* var */}) {
+	case ${2:/* condition */}:
+		${3:/* code */}
+		break;
+	default:
+		break;
+	}
+snippet òmacroifelse
+	#if ${1:/* condition */}
+		${2:/* code */}
+	#else
+		
+	#endif
+snippet òtplfn
+	template <${1:class T}>
+	${2:void} ${3:/* name */}(${4:/* args */}) {
+		${5:/* code */}
+	}
+snippet òtplcl
+	template <${1:class T}>
+	class ${2:/* name */} {
+	public:
+		${3:/* code */}
+	};
+snippet ògs
+	const ${1:/* type */} get${2:/* var_name */}() const {
+		return m$2;
+	}
+
+	void set$2(const $1 value) {
+		m$2 = value;
+	}
+
+	${3:/* code */}
+
+snippet ògsr
+	const ${1:/* type */}& get${2:/* var_name */}() const {
+		return m$2;
+	}
+
+	void set$2(const $1& value) {
+		m$2 = value;
+	}
+
+	${3:/* code */}
+
+snippet ògsrs
+	const std::string& get${1:/* var_name */}() const {
+		return ms$1;
+	}
+
+	void set$1(const std::string& value) {
+		ms$1 = value;
+	}
+	
+	${2:/* code */}
 

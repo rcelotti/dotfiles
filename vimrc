@@ -89,6 +89,9 @@ Bundle 'kien/ctrlp.vim.git'
 " nerd tree ...
 Bundle 'scrooloose/nerdtree.git'
 
+" syntastic
+Bundle 'scrooloose/syntastic.git'
+
 " Conque is a Vim plugin which allows you to run interactive programs
 " (such as a bash shell in linux) inside vim
 Bundle 'rson/vim-conque.git'
@@ -98,6 +101,8 @@ Bundle 'altercation/vim-colors-solarized.git'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'ColorSchemeMenuMaker'
 Bundle 'desert-warm-256'
+
+Bundle 'CSApprox'
 
 " minibufexpl.vim - Elegant buffer explorer - takes very little screen space
 "Bundle 'fholgado/minibufexpl.vim.git'
@@ -143,7 +148,11 @@ Bundle 'godlygeek/tabular.git'
 "Bundle 'drmingdrmer/xptemplate.git'
 
 " snippets
-Bundle 'msanders/snipmate.vim.git'
+"Bundle 'msanders/snipmate.vim.git'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "honza/vim-snippets"
+Bundle "garbas/vim-snipmate"
 
 " comment lines
 "   gcc         => comment current line
@@ -201,6 +210,7 @@ Bundle 'sjl/gundo.vim.git'
 " Bundle 'kshenoy/vim-signature' 
 
 " create doxygen documentation
+" F6 == create
 Bundle 'DoxygenToolkit.vim'
 
 " }}}
@@ -306,6 +316,8 @@ set complete=.,w,b,u,t
 " Same as default except that I remove the 'u' option
 "set complete=.,w,b,t
 "set completeopt=longest,menuone,preview
+set completeopt=menu,menuone
+set pumheight=20
 
 " Save when losing focus
 "au FocusLost * :silent! wall
@@ -507,7 +519,7 @@ if &t_Co > 2 || has("gui_running")
     " load color scheme
     "colorscheme wombat256mod
     "colorscheme default
-    colorscheme solarized
+    colorscheme summerfruit256
     exe "set guifont=" . g:main_font
 endif
 
@@ -631,6 +643,7 @@ let g:ConqueTerm_TERM = 'xterm'
 " SuperTab Settings {{{
 " option for context aware completion
 let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabDefaultCompletionType="<c-x><c-u><c-p>"
 "}}}
 
 " XPTemplate Settings (not used) {{{
@@ -1121,7 +1134,7 @@ if &diff
     map <F9> :new<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>gg
 else
     " spell settings
-    :setlocal spell spelllang=it,en
+    " :setlocal spell spelllang=it,en
     " next/prev spellcheck error
     map <M-Down> ]s
     map <M-Up> [s
@@ -1513,6 +1526,7 @@ augroup cr_sh
     au BufEnter *.sh setl textwidth=88 
     if exists('+colorcolumn')
         set colorcolumn=88
+        highlight ColorColumn ctermbg=7
     else
         au BufReadPre *.sh highlight OverLength guibg=#073642
         au BufReadPre *.sh let OverLengthMatch=matchadd('OverLength', '\%>88v.\+', -1)
@@ -1561,17 +1575,27 @@ iab cosnt    const
 "}}}
 
 " setup clang {{{
-let g:clang_user_options='-std=c++11 2>/dev/null || exit 0' 
+" let g:clang_user_options='-std=c++11 2>/dev/null || exit 0' 
+let g:clang_user_options="-std=c++11 " 
 let g:clang_complete_auto = 1
 let g:clang_complete_copen = 0
 let g:clang_complete_macros = 1
 let g:clang_complete_patterns = 1
+let g:clang_snippets = 0
+"let g:clang_snippets_engine = 'snipmate'
+"let g:clang_snippets_engine = 'clang_complete'
 " custom build of clang
 "let g:clang_exec = '~/src/llvm/build/bin/clang'
 " let g:clang_exec = '/usr/bin/clang'
 let g:clang_use_library = 1
-"let g:clang_debug = 1
+" let g:clang_debug = 1
 "let g:clang_library_path = '~/src/llvm/llvm/Release+Asserts/lib/'
 let g:clang_library_path = '/usr/lib'
 "}}}
 
+" setup syntastic {{{
+let g:syntastic_cpp_checkers=['gcc']
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_auto_refresh_includes = 1
+let g:syntastic_cpp_compiler = 'clang++'
+" }}}

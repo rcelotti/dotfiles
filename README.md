@@ -1,65 +1,72 @@
-======================
-    Installation
-======================
-
-Clone git repository
-----------------------
-
-    cd ~
-    git clone https://github.com/rcelotti/dotfiles.git ~/dotfiles
+# Installation
 
 
-
-Create symlinks
-----------------------
-Inside the ~/dotfiles folder you can find the bash script "create_links.sh"
-that will create symlinks automatically (and backup existing files) but if 
-you prefer to do it manually here is what must be linked.
-
-Symlinks for vim:
-
-    ln -s ~/dotfiles/vim ~/.vim
-    ln -s ~/dotfiles/vim/vimrc ~/.vimrc
-    ln -s ~/dotfiles/vim/gvimrc ~/.gvimrc
-
-Symlinks for tmux:
-
-    ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
-    ln -s ~/dotfiles/tmux/tmux-powerlinerc ~/.tmux-powerlinerc
+## Clone git repository
+```console
+cd ~
+git clone https://github.com/rcelotti/dotfiles.git ~/dotfiles
+```
 
 
+## Create symlinks
+The bash script "create_links.sh" will create symlinks automatically 
+(and backup existing files) but if you prefer to do it manually here 
+is what must be linked.
 
-Init git submodules
-----------------------
+**Symlinks for vim:**
+```console
+ln -s ~/dotfiles/vim ~/.vim
+ln -s ~/dotfiles/vim/vimrc ~/.vimrc
+ln -s ~/dotfiles/vim/gvimrc ~/.gvimrc
+```
+
+**Symlinks for tmux:**
+```console
+ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/tmux/tmux-powerlinerc ~/.tmux-powerlinerc
+```
+
+
+## Init git submodules
 Switch to the "~/dotfiles" directory, fetch vundle and update submodules:
+```console
+cd ~/dotfiles
+git clone http://github.com/gmarik/vundle.git ./vim/bundle/vundle
+git submodule init
+git submodule update
+```
 
-    cd ~/dotfiles
-    git clone http://github.com/gmarik/vundle.git ./vim/bundle/vundle
-    git submodule init
-    git submodule update
 
-
-
-Update bundles in vim
-----------------------
+## Update bundles in vim
 Start vim and run:
-    :BundleInstall
-    :BundleUpdate
+```bash
+:BundleInstall
+:BundleUpdate
+```
 
 or, from command line, run:
-    vim +BundleInstall +BundleUpdate +qall
+```console
+vim +BundleInstall +BundleUpdate +qall
+```
 
 
-
-Optional steps
-----------------------
-Additional (optional) stuff.
+## Additional (optional) stuff
 In .bashrc:
-    1) Put this after your PS1 prompt (needed by some tmux segments)
-       PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
-    2) Alias tmux to force 256 colors
-       alias tmux='tmux -2'
-    3) Alias "vim-less" script
-       alias vless='/usr/share/vim/vim73/macros/less.sh'
+* Put this after your PS1 prompt (needed by some tmux segments):
+```bash
+PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+``` 
+
+* Alias tmux to force 256 colors:
+```bash
+alias tmux='tmux -2'
+``` 
+
+* Alias "vim-less" script:
+```bash   
+alias vless='/usr/share/vim/vim73/macros/less.sh'
+``` 
+
+
 
     

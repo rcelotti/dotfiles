@@ -1526,7 +1526,7 @@ augroup cr_sh
     au BufEnter *.sh setl textwidth=88 
     if exists('+colorcolumn')
         set colorcolumn=88
-        highlight ColorColumn ctermbg=7
+        " highlight ColorColumn ctermbg=137
     else
         au BufReadPre *.sh highlight OverLength guibg=#073642
         au BufReadPre *.sh let OverLengthMatch=matchadd('OverLength', '\%>88v.\+', -1)

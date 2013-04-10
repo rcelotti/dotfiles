@@ -28,10 +28,9 @@ ln -s ~/dotfiles/tmux/tmux-powerlinerc ~/.tmux-powerlinerc
 
 
 ## Init git submodules
-Switch to the "~/dotfiles" directory, fetch vundle and update submodules:
+Switch to the "~/dotfiles" directory and update submodules:
 ```console
 cd ~/dotfiles
-git clone http://github.com/gmarik/vundle.git ./vim/bundle/vundle
 git submodule init
 git submodule update
 ```

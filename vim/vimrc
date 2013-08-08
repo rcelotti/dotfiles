@@ -94,7 +94,7 @@ Bundle 'scrooloose/syntastic.git'
 
 " Conque is a Vim plugin which allows you to run interactive programs
 " (such as a bash shell in linux) inside vim
-Bundle 'rson/vim-conque.git'
+Bundle 'vim-scripts/Conque-Shell.git'
 
 " colors theme
 Bundle 'altercation/vim-colors-solarized.git'
@@ -109,6 +109,7 @@ Bundle 'CSApprox'
 
 " clang_complete - Vim plugin that use clang for completing C/C++ code
 Bundle 'Rip-Rip/clang_complete.git'
+Bundle 'exclipy/clang_indexer.git'
 
 " If you've ever tried using the "." command after a plugin map, you were likely disappointed to discover it only 
 " repeated the last native command inside that map, rather than the map as a whole.  
@@ -132,7 +133,10 @@ Bundle 'derekwyatt/vim-protodef.git'
 " fast moving <leader><leader>w W b B j k
 Bundle 'Lokaltog/vim-easymotion' 
 
-" Bundle 'rstacruz/sparkup'
+"Bundle 'rstacruz/sparkup'
+
+" zen coding: <c-y>, to expand and <c-y>n for next field (<c-y>N prev field)
+Bundle 'mattn/zencoding-vim.git'
 
 " Supertab is a vim plugin which allows you to use <Tab> for all your insert 
 " completion needs (:help ins-completion).
@@ -272,7 +276,40 @@ set list
 " set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 
-if has("unix")
+" g:my_vim_dir is used elsewhere in my vim configurations
+let g:my_vim_dir=expand("$HOME/.vim")
+
+if has("win16") || has("win32") || has("win64")
+
+    "$HOME/.vim and $HOME/.vim/after are in the &rtp on unix
+    "But on windows, they need to be added.
+    "add g:my_vim_dir to the front of the runtimepath
+    execute "set rtp^=".g:my_vim_dir
+    "add g:my_vim_dir\after to the end of the runtimepath
+    execute "set rtp+=".g:my_vim_dir."\\after"
+    "Note, pathogen#infect() looks for the 'bundle' folder in each path
+    "of the &rtp, where the last dir in the '&rtp path' is not 'after'. The
+    "<path>\bundle\*\after folders will be added if and only if
+    "the corresponding <path>\after folder is in the &rtp before
+    "pathogen#infect() is called.  So it is very important to add the above
+    "'after' folder.
+    "(This applies to vim plugins such as snipmate, tabularize, etc.. that
+    " are loaded by pathogen (and perhaps vundle too.))
+
+    " Not necessary, but I like to cleanup &rtp to use \ instead of /
+    " when on windows machines
+    let &rtp=substitute(&rtp,"[/]","\\","g")
+
+    "On windows, if called from cygwin or msys, the shell needs to be changed 
+    "to cmd.exe to work with certain plugins that expect cmd.exe on windows versions   
+    "of vim.
+    if &shell=~#'bash$'
+        set shell=$COMSPEC " sets shell to correct path for cmd.exe
+    endif
+
+    set shell=cmd.exe
+    set shellcmdflag=/c
+elseif has("unix")
     set shell=/bin/bash\ --login
 else
     set shell=ksh.exe
@@ -502,6 +539,9 @@ set wildignore+=lib
 if has("mac")
     let g:main_font = "Anonymous\\ Pro:h16"
     let g:small_font = "Anonymous\\ Pro:h2"
+elseif has("win16") || has("win32") || has("win64")
+    let g:main_font = "DejaVu_Sans_Mono:h8:cANSI"
+    let g:small_font = "DejaVu_Sans_Mono:h8:cANSI"
 else
     let g:main_font = "DejaVu\\ Sans\\ Mono\\ 10"
     let g:small_font = "DejaVu\\ Sans\\ Mono\\ 2"
@@ -673,8 +713,8 @@ let g:SuperTabDefaultCompletionType = "context"
 " You can write HTML in a CSS-like syntax, and have Sparkup handle the
 " expansion to full HTML code.
 " http://github.com/rstacruz/sparkup
-" let g:sparkupExecuteMapping = '<c-tab>'
-" let g:sparkupNextMapping = '<tab><tab>'
+"let g:sparkupExecuteMapping = '<c-a-n>'      
+"let g:sparkupNextMapping = '<tab><tab>'
 " }}}
 
 " }}}
@@ -1589,8 +1629,8 @@ let g:clang_snippets = 0
 " let g:clang_exec = '/usr/bin/clang'
 let g:clang_use_library = 1
 " let g:clang_debug = 1
-"let g:clang_library_path = '~/src/llvm/llvm/Release+Asserts/lib/'
-let g:clang_library_path = '/usr/lib'
+let g:clang_library_path = '~/src/llvm/llvm/Release+Asserts/lib/'
+"let g:clang_library_path = '/usr/lib'
 "}}}
 
 " setup syntastic {{{

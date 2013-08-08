@@ -276,17 +276,16 @@ set list
 " set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 
-" g:my_vim_dir is used elsewhere in my vim configurations
-let g:my_vim_dir=expand("$HOME/.vim")
 
 if has("win16") || has("win32") || has("win64")
+    let g:my_vim_dir=expand("$HOME/.vim")
 
     "$HOME/.vim and $HOME/.vim/after are in the &rtp on unix
     "But on windows, they need to be added.
     "add g:my_vim_dir to the front of the runtimepath
-    execute "set rtp^=".g:my_vim_dir
+    execute "set rtp^=" . g:my_vim_dir
     "add g:my_vim_dir\after to the end of the runtimepath
-    execute "set rtp+=".g:my_vim_dir."\\after"
+    execute "set rtp+=" . g:my_vim_dir . "\\after"
     "Note, pathogen#infect() looks for the 'bundle' folder in each path
     "of the &rtp, where the last dir in the '&rtp path' is not 'after'. The
     "<path>\bundle\*\after folders will be added if and only if
@@ -305,10 +304,10 @@ if has("win16") || has("win32") || has("win64")
     "of vim.
     if &shell=~#'bash$'
         set shell=$COMSPEC " sets shell to correct path for cmd.exe
+    else
+        set shell=cmd.exe
+        set shellcmdflag=/c
     endif
-
-    set shell=cmd.exe
-    set shellcmdflag=/c
 elseif has("unix")
     set shell=/bin/bash\ --login
 else
@@ -397,8 +396,12 @@ set sidescrolloff=10
 set virtualedit=all
 set virtualedit+=block
 
-" set the forward slash to be the slash of note. Backslashes suck
-set shellslash
+if has("win16") || has("win32") || has("win64")
+    set noshellslash
+else
+    " set the forward slash to be the slash of note. Backslashes suck
+    set shellslash
+endif
 " make command line two lines high
 set ch=2
 

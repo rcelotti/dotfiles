@@ -6,6 +6,8 @@
 cd ~
 git clone https://github.com/rcelotti/dotfiles.git ~/dotfiles
 ```
+note: on windows install git and curl as shown here
+https://github.com/gmarik/vundle/wiki/Vundle-for-Windows
 
 
 ## Create symlinks
@@ -24,6 +26,13 @@ ln -s ~/dotfiles/vim/gvimrc ~/.gvimrc
 ```console
 ln -s ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/tmux/tmux-powerlinerc ~/.tmux-powerlinerc
+```
+
+**Symlinks for vim under windows:**
+```console
+cd %USERPROFILE%
+mklink /D .vim dotfiles\vim
+mklink /H _vimrc dotfiles\vim\vimrc
 ```
 
 

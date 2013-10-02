@@ -184,7 +184,7 @@ Bundle 'Lokaltog/vim-powerline.git'
 " Indent Guides is a plugin for visually displaying indent levels in Vim.
 " Toggle with 
 "   <leader>ig
-Bundle 'mutewinter/vim-indent-guides.git'
+Bundle 'nathanaelkane/vim-indent-guides.git'
 
 " Working with variants of a word
 " Abbreviation
@@ -688,6 +688,12 @@ let g:ConqueTerm_TERM = 'xterm'
 let g:SuperTabDefaultCompletionType = "context"
 "let g:SuperTabDefaultCompletionType="<c-x><c-u><c-p>"
 "}}}
+
+" vim-indent-guides settings {{{
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+"}}}
+
 
 " XPTemplate Settings (not used) {{{
 " Add xptemplate global personal directory value

@@ -767,7 +767,7 @@ endfunction
 " gives you one color of highlighting.  Now you can use <leader>N where N is
 " a number from 1-6 to highlight the current word in a specific color.
 
-function! HiInterestingWord(n) " {{{
+function! HiInterestingWord(n,h) " {{{
     " Save our location.
     normal! mz
 
@@ -780,24 +780,33 @@ function! HiInterestingWord(n) " {{{
     " Clear existing matches, but don't worry if they don't exist.
     silent! call matchdelete(mid)
 
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
+    if a:h == 1 
+        " Construct a literal pattern that has to match at boundaries.
+        let pat = '\V\<' . escape(@z, '\') . '\>'
 
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+        " Actually match the words.
+        call matchadd("InterestingWord" . a:n, pat, 1, mid)
+    endif
 
     " Move back to our original location.
     normal! `z
 endfunction " }}}
 
 " Mappings {{{
-
-nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
-nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
-nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
-nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
-nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
-nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+" <leader> number number    => hilight word with group /number/
+" <leader> number ò         => clear hilight for group /number/ 
+nnoremap <silent> <leader>11 :call HiInterestingWord(1,1)<cr>
+nnoremap <silent> <leader>1ò :call HiInterestingWord(1,0)<cr>
+nnoremap <silent> <leader>22 :call HiInterestingWord(2,1)<cr>
+nnoremap <silent> <leader>2ò :call HiInterestingWord(2,0)<cr>
+nnoremap <silent> <leader>33 :call HiInterestingWord(3,1)<cr>
+nnoremap <silent> <leader>3ò :call HiInterestingWord(3,0)<cr>
+nnoremap <silent> <leader>44 :call HiInterestingWord(4,1)<cr>
+nnoremap <silent> <leader>4ò :call HiInterestingWord(4,0)<cr>
+nnoremap <silent> <leader>55 :call HiInterestingWord(5,1)<cr>
+nnoremap <silent> <leader>5ò :call HiInterestingWord(5,0)<cr>
+nnoremap <silent> <leader>66 :call HiInterestingWord(6,1)<cr>
+nnoremap <silent> <leader>6ò :call HiInterestingWord(6,0)<cr>
 
 " }}}
 
@@ -1639,7 +1648,7 @@ let g:clang_snippets = 0
 let g:clang_use_library = 1
 "let g:clang_debug = 1
 "let g:clang_library_path = '~/src/llvm/llvm/Release+Asserts/lib/'
-let g:clang_library_path = '/usr/lib/clang/'
+let g:clang_library_path = '/usr/lib/clang_library/'
 
 
 let g:clang_use_library=1

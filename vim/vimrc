@@ -92,6 +92,12 @@ Bundle 'scrooloose/nerdtree.git'
 " syntastic
 Bundle 'scrooloose/syntastic.git'
 
+" jshint (javascript parser for Syntax Checking / Linting)
+Bundle 'Shutnik/jshint2.vim.git'
+
+" tern project (javascript parser for Source-Code browsing / Tag-list)
+Bundle 'marijnh/tern_for_vim.git'
+
 " Conque is a Vim plugin which allows you to run interactive programs
 " (such as a bash shell in linux) inside vim
 Bundle 'vim-scripts/Conque-Shell.git'
@@ -102,14 +108,20 @@ Bundle 'flazz/vim-colorschemes'
 Bundle 'ColorSchemeMenuMaker'
 Bundle 'desert-warm-256'
 
+" This plugin makes GVim-only colorschemes Just Work in terminal Vim,
+" as long as the terminal supports 88 or 256 colors
 Bundle 'CSApprox'
 
 " minibufexpl.vim - Elegant buffer explorer - takes very little screen space
 "Bundle 'fholgado/minibufexpl.vim.git'
 
 " clang_complete - Vim plugin that use clang for completing C/C++ code
-Bundle 'Rip-Rip/clang_complete.git'
-Bundle 'exclipy/clang_indexer.git'
+"Bundle 'Rip-Rip/clang_complete.git'
+"Bundle 'exclipy/clang_indexer.git'
+
+" YouCompleteMe
+" fast, as-you-type, fuzzy-search code completion engine for Vim
+Bundle 'Valloric/YouCompleteMe.git'
 
 " If you've ever tried using the "." command after a plugin map, you were likely disappointed to discover it only 
 " repeated the last native command inside that map, rather than the map as a whole.  
@@ -133,7 +145,11 @@ Bundle 'derekwyatt/vim-protodef.git'
 " fast moving <leader><leader>w W b B j k
 Bundle 'Lokaltog/vim-easymotion' 
 
-"Bundle 'rstacruz/sparkup'
+" You can write HTML in a CSS-like syntax, and have Sparkup handle the
+" expansion to full HTML code.
+" http://github.com/rstacruz/sparkup
+"source ~/.vim/bundle/sparkup/vim/ftplugin/html/sparkup.vim
+Bundle 'rstacruz/sparkup'
 
 " zen coding: <c-y>, to expand and <c-y>n for next field (<c-y>N prev field)
 Bundle 'mattn/zencoding-vim.git'
@@ -426,8 +442,8 @@ noremap L $
 vnoremap L g_
 
 " bash-like mapping in insert mode
-inoremap <c-a> <esc>I
-inoremap <c-e> <esc>A
+"inoremap <c-a> <esc>I
+"inoremap <c-e> <esc>A
 
 " gi already moves to "last place you exited insert mode", so we'll map gI to
 " something similar: move to last change
@@ -718,12 +734,9 @@ let g:indent_guides_guide_size=1
 "nmap <silent> <leader>fp :FufFile ~/git/*<cr>
 "}}}
 
-" Sparkup Settings (not used) {{{
-" You can write HTML in a CSS-like syntax, and have Sparkup handle the
-" expansion to full HTML code.
-" http://github.com/rstacruz/sparkup
-"let g:sparkupExecuteMapping = '<c-a-n>'      
-"let g:sparkupNextMapping = '<tab><tab>'
+" Sparkup Settings {{{
+"let g:sparkupExecuteMapping = '<c-e>'      
+"let g:sparkupNextMapping = '<c-n>'
 " }}}
 
 " }}}
@@ -962,8 +975,8 @@ augroup END
 augroup ft_html
     au!
 
-    au BufNewFile,BufRead *.html setlocal filetype=htmldjango
-    au BufNewFile,BufRead *.dram setlocal filetype=htmldjango
+    "au BufNewFile,BufRead *.html setlocal filetype=htmldjango
+    "au BufNewFile,BufRead *.dram setlocal filetype=htmldjango
 
     au FileType html,jinja,htmldjango setlocal foldmethod=manual
 
@@ -1055,7 +1068,7 @@ augroup END
 "onoremap <F9> <C-C>za
 "vnoremap <F9> zf
 nnoremap <space> za
-nnoremap <C-space> zM
+"nnoremap <C-space> zM
 
 " }}}
 
@@ -1126,6 +1139,8 @@ noremap <S-F8> :make clean all<CR>
 " toggle tagbar
 noremap <silent> <F9> :TagbarToggle<CR>
 let g:tagbar_autoclose = 1
+let g:tagbar_show_visibility = 1
+let g:tagbar_show_linenumbers = 1
 
 " toggle source explorer
 noremap <silent> <S-F9> :SrcExplToggle<CR>
@@ -1635,10 +1650,6 @@ iab cosnt    const
 " setup clang {{{
 " let g:clang_user_options='-std=c++11 2>/dev/null || exit 0' 
 let g:clang_user_options='-std=c++11 ' 
-let g:clang_complete_auto = 1
-let g:clang_complete_copen = 0
-let g:clang_complete_macros = 1
-let g:clang_complete_patterns = 1
 let g:clang_snippets = 0
 "let g:clang_snippets_engine = 'snipmate'
 "let g:clang_snippets_engine = 'clang_complete'
@@ -1650,8 +1661,6 @@ let g:clang_use_library = 1
 "let g:clang_library_path = '~/src/llvm/llvm/Release+Asserts/lib/'
 let g:clang_library_path = '/usr/lib/clang_library/'
 
-
-let g:clang_use_library=1
 let g:clang_auto_select=1 "select first entry in popup menu but don't insert in code
 let g:clang_complete_auto=1 "auto complete after -> . and ::
 let g:clang_complete_copen=0 "open quick fix on error
@@ -1669,8 +1678,12 @@ let g:clang_close_preview=0 " close preview window after completion
 "}}}
 
 " setup syntastic {{{
+let g:syntastic_loc_list_height=5
 let g:syntastic_cpp_checkers=['gcc']
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_cpp_compiler = 'clang++'
+nmap <leader>err :Errors<CR>
 " }}}
+
+

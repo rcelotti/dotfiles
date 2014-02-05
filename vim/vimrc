@@ -54,7 +54,9 @@ Bundle 'klen/python-mode.git'
 Bundle 'tpope/vim-unimpaired.git'                    
 
 " This script is designed to switch between companion files
-" <leader>ol <leader>oh
+" <leader>of - Switch to the file and load it into the current window
+" <leader>ol - Switch to the file and load it into the window on the right
+" <leader>oh - Switch to the file and load it into the window on the left
 Bundle 'derekwyatt/vim-fswitch.git'
 
 " FuzzyFinder provides convenient ways to quickly reach the 
@@ -595,7 +597,7 @@ endif
 
 " Plugin settings {{{
 
-" setup Ack {{{
+" Ack {{{
 
 " Ack (quick grep search)
 nmap <leader>a <Esc>:Ack!
@@ -745,7 +747,7 @@ let g:indent_guides_guide_size=1
 "let g:sparkupNextMapping = '<c-n>'
 " }}}
 
-" setup clang {{{
+" clang {{{
 " let g:clang_user_options='-std=c++11 2>/dev/null || exit 0' 
 let g:clang_user_options='-std=c++11 ' 
 let g:clang_snippets = 0
@@ -775,7 +777,7 @@ let g:clang_close_preview=0 " close preview window after completion
 
 "}}}
 
-" setup syntastic {{{
+" syntastic {{{
 let g:syntastic_loc_list_height=5
 let g:syntastic_cpp_checkers=['gcc']
 let g:syntastic_cpp_check_header = 1
@@ -784,9 +786,17 @@ let g:syntastic_cpp_compiler = 'clang++'
 nmap <leader>err :Errors<CR>
 " }}}
 
-" setup snipmate {{{
+" snipmate {{{
 imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
 smap <C-J> <Plug>snipMateNextOrTrigger
+" }}}
+
+" tagbar {{{
+let g:tagbar_autoclose = 0
+let g:tagbar_autofocus = 1
+let g:tagbar_show_visibility = 1
+let g:tagbar_show_linenumbers = 1
+let g:tagbar_width = 40
 " }}}
 
 " }}}
@@ -1193,9 +1203,7 @@ noremap <S-F8> :make clean all<CR>
 
 " toggle tagbar
 noremap <silent> <F9> :TagbarToggle<CR>
-let g:tagbar_autoclose = 1
-let g:tagbar_show_visibility = 1
-let g:tagbar_show_linenumbers = 1
+
 
 " toggle source explorer
 noremap <silent> <S-F9> :SrcExplToggle<CR>
@@ -1209,6 +1217,55 @@ noremap <silent> <C-F12> :vertical resize +10<CR>
 nnoremap <F12> <C-]>
 
 " }}}
+
+
+" tab bar navigation {{{
+"nnoremap <C-S-tab> :tabprevious<CR>
+"nnoremap <C-tab>   :tabnext<CR>
+"nnoremap <C-t>     :tabnew<CR>
+"inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+"inoremap <C-tab>   <Esc>:tabnext<CR>i
+"inoremap <C-t>     <Esc>:tabnew<CR>
+
+"nnoremap th  :tabfirst<CR>
+"nnoremap tj  :tabnext<CR>
+"nnoremap tk  :tabprev<CR>
+"nnoremap tl  :tablast<CR>
+"nnoremap tt  :tabedit<Space>
+"nnoremap tn  :tabnext<Space>
+"nnoremap td  :tabclose<CR>
+
+nnoremap tl :tabnext<CR>
+nnoremap th :tabprev<CR>
+nnoremap tn :tabnew<CR>
+nnoremap tm :tabm<Space>
+nnoremap tt :tabnext<Space>
+function! Tabline()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    let tab = i + 1
+    let winnr = tabpagewinnr(tab)
+    let buflist = tabpagebuflist(tab)
+    let bufnr = buflist[winnr - 1]
+    let bufname = bufname(bufnr)
+    let bufmodified = getbufvar(bufnr, "&mod")
+
+    let s .= '%' . tab . 'T'
+    let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+    let s .= ' ' . tab .':'
+    let s .= (bufname != '' ? '['. fnamemodify(bufname, ':t') . '] ' : '[No Name] ')
+
+    if bufmodified
+      let s .= '[+] '
+    endif
+  endfor
+
+  let s .= '%#TabLineFill#'
+  return s
+endfunction
+set tabline=%!Tabline()
+" }}}
+
 
 " edit in hex
 "   open a binary file 

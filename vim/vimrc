@@ -786,6 +786,10 @@ let g:syntastic_cpp_compiler = 'clang++'
 nmap <leader>err :Errors<CR>
 " }}}
 
+" YouCompleteMe {{{
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" }}}
+
 " snipmate {{{
 imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
 smap <C-J> <Plug>snipMateNextOrTrigger

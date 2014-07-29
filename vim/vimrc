@@ -134,6 +134,8 @@ Bundle 'tpope/vim-repeat.git'
 " This script is based on the eclipse Task List. It will search the file for FIXME, TODO, and XXX (or a custom list)
 " and put them in a handy list for you to browse which at the same time will update the 
 " location in the document so you can see exactly where the tag is located
+" <leader>td to open
+" q inside TODO window to quit without moving the cursor
 Bundle 'vim-scripts/TaskList.vim.git'
 
 " This plugin is a front for the Perl module App::Ack. 
@@ -153,8 +155,9 @@ Bundle 'Lokaltog/vim-easymotion'
 "source ~/.vim/bundle/sparkup/vim/ftplugin/html/sparkup.vim
 Bundle 'rstacruz/sparkup'
 
-" zen coding: <c-y>, to expand and <c-y>n for next field (<c-y>N prev field)
-Bundle 'mattn/zencoding-vim.git'
+" emmet: <c-y>, to expand and <c-y>n for next field (<c-y>N prev field)
+" (expand is also mapped to <c-e>)
+Bundle 'mattn/emmet-vim.git'
 
 " Supertab is a vim plugin which allows you to use <Tab> for all your insert 
 " completion needs (:help ins-completion).
@@ -604,12 +607,20 @@ nmap <leader>a <Esc>:Ack!
 
 " }}}
 
+" Emmet {{{
+
+let g:user_emmet_leader_key='<c-e>'
+
+" }}}
+
 " Ctrl-P {{{
 let g:ctrlp_dont_split = 'NERD_tree_2'
 let g:ctrlp_working_path_mode = 'ra'
 "let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_files = 50000
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+"set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/build/*
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|build)$'
+let g:ctrlp_lazy_update = 1
 nnoremap <silent> <leader>ff :CtrlP<cr>
 nnoremap <silent> <leader>fb :CtrlPBuffer<cr>
 nnoremap <silent> <leader>fr :CtrlPMRU<cr>
@@ -618,10 +629,11 @@ nnoremap <silent> <leader>fm :CtrlPMixed<cr>
 
 " Gundo {{{
 nnoremap <F5> :GundoToggle<CR>
-let g:gundo_debug = 1
+"let g:gundo_debug = 1
 let g:gundo_preview_bottom = 1
 let g:gundo_tree_statusline = "Gundo"
 let g:gundo_preview_statusline = "Gundo Preview"
+let g:gundo_close_on_revert = 0
 " }}}
 
 " NERD Tree {{{
@@ -697,6 +709,12 @@ let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
 
 " // Set "<F11>" key for updating the tags file artificially 
 let g:SrcExpl_updateTagsKey = "<F11>" 
+
+"}}}
+
+" TaskList {{{
+
+let g:tlTokenList = ['FIXME', 'TODO', 'XXX', 'ROBY']
 
 "}}}
 

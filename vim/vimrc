@@ -4,70 +4,66 @@
 
 " Preamble {{{
 
-filetype on
-filetype plugin on
-filetype indent on
-set nocompatible
-
-" Set mapleader to a more accessible key
-let mapleader = "ò"
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
 " }}}
 
 " Vundle plugin installer {{{
 
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" NOTE: comments after Plugin command are not allowed..
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle, required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " fugitive.vim may very well be the best Git wrapper of all time
-Bundle 'tpope/vim-fugitive.git'
+Plugin 'tpope/vim-fugitive.git'
 
 " function library (used by other plugin for example FuzzyFinder)
-"Bundle 'vim-scripts/L9.git'
+"Plugin 'vim-scripts/L9.git'
 
 " pathogen.vim makes it super easy to install plugins 
 " and runtime files in their own private directories
 " (if you don't like vundle)
-"Bundle 'tpope/vim-pathogen.git'
+"Plugin 'tpope/vim-pathogen.git'
 
 " Surround.vim is all about "surroundings": parentheses, brackets, quotes, XML tags, and more
-Bundle 'tpope/vim-surround.git'
+Plugin 'tpope/vim-surround.git'
 
 " Python-mode is a vim plugin that allows you to use the pylint, rope, 
 " pydoc, pyflakes, pep8, mccabe libraries in vim to provide features 
 " like python code looking for bugs, refactoring and some other useful things.
-Bundle 'klen/python-mode.git'
+Plugin 'klen/python-mode.git'
 
 " This plugin provides several pairs of bracket maps. 
-Bundle 'tpope/vim-unimpaired.git'                    
+Plugin 'tpope/vim-unimpaired.git'                    
 
 " This script is designed to switch between companion files
 " <leader>of - Switch to the file and load it into the current window
 " <leader>ol - Switch to the file and load it into the window on the right
 " <leader>oh - Switch to the file and load it into the window on the left
-Bundle 'derekwyatt/vim-fswitch.git'
+Plugin 'derekwyatt/vim-fswitch.git'
 
 " FuzzyFinder provides convenient ways to quickly reach the 
 " buffer/file/command/bookmark/tag you want
 " <leader>ff <leader>fb
-"Bundle 'vim-scripts/FuzzyFinder.git'
+"Plugin 'vim-scripts/FuzzyFinder.git'
 
 " The Command-T plug-in provides an extremely fast, intuitive mechanism 
 " for opening files with a minimal number of keystrokes
 "   <leader>t
-"Bundle 'git://git.wincent.com/command-t.git'
+"Plugin 'git://git.wincent.com/command-t.git'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 " Activate with <C-p>
@@ -86,126 +82,126 @@ Bundle 'derekwyatt/vim-fswitch.git'
 "   Use <c-z> to mark/unmark multiple files and <c-o> to open them.
 "   Submit two or more dots .. to go up the directory tree by one 
 "       or multiple levels.
-Bundle 'kien/ctrlp.vim.git'
+Plugin 'kien/ctrlp.vim.git'
 
 " nerd tree ...
-Bundle 'scrooloose/nerdtree.git'
+Plugin 'scrooloose/nerdtree.git'
 
 " syntastic
-Bundle 'scrooloose/syntastic.git'
+Plugin 'scrooloose/syntastic.git'
 
 " jshint (javascript parser for Syntax Checking / Linting)
-Bundle 'Shutnik/jshint2.vim.git'
+Plugin 'Shutnik/jshint2.vim.git'
 
 " tern project (javascript parser for Source-Code browsing / Tag-list)
-Bundle 'marijnh/tern_for_vim.git'
+Plugin 'marijnh/tern_for_vim.git'
 
 " Conque is a Vim plugin which allows you to run interactive programs
 " (such as a bash shell in linux) inside vim
-Bundle 'vim-scripts/Conque-Shell.git'
+Plugin 'vim-scripts/Conque-Shell.git'
 
 " colors theme
-Bundle 'altercation/vim-colors-solarized.git'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'ColorSchemeMenuMaker'
-Bundle 'desert-warm-256'
+Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'ColorSchemeMenuMaker'
+Plugin 'desert-warm-256'
 
 " This plugin makes GVim-only colorschemes Just Work in terminal Vim,
 " as long as the terminal supports 88 or 256 colors
-Bundle 'CSApprox'
+Plugin 'CSApprox'
 
 " minibufexpl.vim - Elegant buffer explorer - takes very little screen space
-"Bundle 'fholgado/minibufexpl.vim.git'
+"Plugin 'fholgado/minibufexpl.vim.git'
 
 " clang_complete - Vim plugin that use clang for completing C/C++ code
-"Bundle 'Rip-Rip/clang_complete.git'
-"Bundle 'exclipy/clang_indexer.git'
+"Plugin 'Rip-Rip/clang_complete.git'
+"Plugin 'exclipy/clang_indexer.git'
 
 " YouCompleteMe
 " fast, as-you-type, fuzzy-search code completion engine for Vim
-Bundle 'Valloric/YouCompleteMe.git'
+Plugin 'Valloric/YouCompleteMe.git'
 
 " If you've ever tried using the "." command after a plugin map, you were likely disappointed to discover it only 
 " repeated the last native command inside that map, rather than the map as a whole.  
 " That disappointment ends today.  
 " Repeat.vim remaps "." in a way that plugins can tap into it.
-Bundle 'tpope/vim-repeat.git'
+Plugin 'tpope/vim-repeat.git'
 
 " This script is based on the eclipse Task List. It will search the file for FIXME, TODO, and XXX (or a custom list)
 " and put them in a handy list for you to browse which at the same time will update the 
 " location in the document so you can see exactly where the tag is located
 " <leader>td to open
 " q inside TODO window to quit without moving the cursor
-Bundle 'vim-scripts/TaskList.vim.git'
+Plugin 'vim-scripts/TaskList.vim.git'
 
 " This plugin is a front for the Perl module App::Ack. 
 " Ack can be used as a replacement for 99% of the uses of grep. 
 " This plugin will allow you to run ack from vim, and shows the results in a split window.
-Bundle 'mileszs/ack.vim.git'
+Plugin 'mileszs/ack.vim.git'
 
 " This Vim plugin will pull C++ ptototypes into the implementation file
-Bundle 'derekwyatt/vim-protodef.git'
+Plugin 'derekwyatt/vim-protodef.git'
 
 " fast moving <leader><leader>w W b B j k
-Bundle 'Lokaltog/vim-easymotion' 
+Plugin 'Lokaltog/vim-easymotion' 
 
 " You can write HTML in a CSS-like syntax, and have Sparkup handle the
 " expansion to full HTML code.
 " http://github.com/rstacruz/sparkup
 "source ~/.vim/bundle/sparkup/vim/ftplugin/html/sparkup.vim
-Bundle 'rstacruz/sparkup'
+Plugin 'rstacruz/sparkup'
 
 " emmet: <c-y>, to expand and <c-y>n for next field (<c-y>N prev field)
 " (expand is also mapped to <c-e>)
-Bundle 'mattn/emmet-vim.git'
+Plugin 'mattn/emmet-vim.git'
 
 " Supertab is a vim plugin which allows you to use <Tab> for all your insert 
 " completion needs (:help ins-completion).
-Bundle 'ervandew/supertab.git'
+Plugin 'ervandew/supertab.git'
 
 " Tabularize text.
 "  :Tabularize /,/r1c1l0
 "
 "            Some short phrase , some other phrase
 "    A much longer phrase here , and another long phrase
-Bundle 'godlygeek/tabular.git'
+Plugin 'godlygeek/tabular.git'
 
-"Bundle 'drmingdrmer/xptemplate.git'
+"Plugin 'drmingdrmer/xptemplate.git'
 
 " snippets
-"Bundle 'msanders/snipmate.vim.git'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "honza/vim-snippets"
-Bundle "garbas/vim-snipmate"
+"Plugin 'msanders/snipmate.vim.git'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'honza/vim-snippets'
+Plugin 'garbas/vim-snipmate'
 
 " comment lines
 "   gcc         => comment current line
 "   gc{motion}  => comment lines 
-" Bundle 'tomtom/tcomment_vim.git'
+" Plugin 'tomtom/tcomment_vim.git'
 
 " comment lines
 "   <leader>cc         => comment current line
 "   <leader>cs         => comment sexily
 "   <leader>cA         => add // at the end and go insert
-Bundle 'scrooloose/nerdcommenter.git'
+Plugin 'scrooloose/nerdcommenter.git'
 
 " Tagbar is a vim plugin for browsing the tags of source code files
 " F9 == toggle
-Bundle 'majutsushi/tagbar.git'
+Plugin 'majutsushi/tagbar.git'
 
 " SrcExpl (Source Explorer) is a source code explorer that provides 
 " context for the currently selected keyword by displaying the function 
 " or type definition or declaration in a separate window
-Bundle 'wesleyche/SrcExpl.git'
+Plugin 'wesleyche/SrcExpl.git'
 
 " bottom line on steroids :)
-Bundle 'Lokaltog/vim-powerline.git'
+Plugin 'Lokaltog/vim-powerline.git'
 
 " Indent Guides is a plugin for visually displaying indent levels in Vim.
 " Toggle with 
 "   <leader>ig
-Bundle 'nathanaelkane/vim-indent-guides.git'
+Plugin 'nathanaelkane/vim-indent-guides.git'
 
 " Working with variants of a word
 " Abbreviation
@@ -217,26 +213,30 @@ Bundle 'nathanaelkane/vim-indent-guides.git'
 "   crm (coerce to MixedCase)
 "   crc (coerce to camelCase)
 "   cru (coerce to UPPER_CASE)
-Bundle 'tpope/vim-abolish'
+Plugin 'tpope/vim-abolish'
 
 " A Vim plugin that adds a :Qargs utility command, for populating 
 " the argument list from the files in the quickfix list.
 "   :Ggrep findme
 "   :Qargs | argdo %s/findme/replacement/gc | update
-Bundle 'nelstrom/vim-qargs'
+Plugin 'nelstrom/vim-qargs'
 
 " load local .lvimrc files
-Bundle 'embear/vim-localvimrc' 
+Plugin 'embear/vim-localvimrc' 
 
 " Gundo is a Vim plugin for visualizing your undo tree to make it usable.
-Bundle 'sjl/gundo.vim.git'
+Plugin 'sjl/gundo.vim.git'
 
 " shows marks
-" Bundle 'kshenoy/vim-signature' 
+" Plugin 'kshenoy/vim-signature' 
 
 " create doxygen documentation
 " F6 == create
-Bundle 'DoxygenToolkit.vim'
+Plugin 'DoxygenToolkit.vim'
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 
 " }}}
 
@@ -252,6 +252,13 @@ Bundle 'DoxygenToolkit.vim'
 " }}}
 
 " Global Stuff {{{
+filetype on
+filetype plugin on
+filetype indent on
+filetype plugin indent on
+
+" Set mapleader to a more accessible key
+let mapleader = "ò"
 
 "set exrc
 set modelines=0

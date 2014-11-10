@@ -48,13 +48,13 @@ git submodule update
 ## Update bundles in vim
 Start vim and run:
 ```bash
-:BundleInstall
-:BundleUpdate
+:PluginInstall
+:PluginUpdate
 ```
 
 or, from command line, run:
 ```console
-vim +BundleInstall +BundleUpdate +qall
+vim +PluginInstall +PluginUpdate +qall
 ```
 
 

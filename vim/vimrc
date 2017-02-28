@@ -52,6 +52,8 @@ Plugin 'tpope/vim-surround.git'
 " like python code looking for bugs, refactoring and some other useful things.
 Plugin 'klen/python-mode.git'
 
+Plugin 'heavenshell/vim-pydocstring'
+
 " This plugin provides several pairs of bracket maps. 
 Plugin 'tpope/vim-unimpaired.git'                    
 
@@ -91,20 +93,21 @@ Plugin 'derekwyatt/vim-fswitch.git'
 Plugin 'kien/ctrlp.vim.git'
 
 " nerd tree ...
+" Activate with <leader>n
 Plugin 'scrooloose/nerdtree.git'
 
-" syntastic
+" syntastic (Syntax Checker)
 Plugin 'scrooloose/syntastic.git'
 
 " jshint (javascript parser for Syntax Checking / Linting)
-Plugin 'Shutnik/jshint2.vim.git'
+"Plugin 'Shutnik/jshint2.vim.git'
 
 " tern project (javascript parser for Source-Code browsing / Tag-list)
-Plugin 'marijnh/tern_for_vim.git'
+"Plugin 'marijnh/tern_for_vim.git'
 
 " Conque is a Vim plugin which allows you to run interactive programs
 " (such as a bash shell in linux) inside vim
-Plugin 'vim-scripts/Conque-Shell.git'
+"Plugin 'vim-scripts/Conque-Shell.git'
 
 " colors theme
 Plugin 'altercation/vim-colors-solarized.git'
@@ -123,17 +126,16 @@ Plugin 'CSApprox'
 "Plugin 'Rip-Rip/clang_complete.git'
 "Plugin 'exclipy/clang_indexer.git'
 
-" YouCompleteMe
-" fast, as-you-type, fuzzy-search code completion engine for Vim
-Plugin 'Valloric/YouCompleteMe.git'
 
-" If you've ever tried using the "." command after a plugin map, you were likely disappointed to discover it only 
+" If you've ever tried using the "." command after a plugin map,
+" you were likely disappointed to discover it only 
 " repeated the last native command inside that map, rather than the map as a whole.  
 " That disappointment ends today.  
 " Repeat.vim remaps "." in a way that plugins can tap into it.
 Plugin 'tpope/vim-repeat.git'
 
-" This script is based on the eclipse Task List. It will search the file for FIXME, TODO, and XXX (or a custom list)
+" This script is based on the eclipse Task List.
+" It will search the file for FIXME, TODO, and XXX (or a custom list)
 " and put them in a handy list for you to browse which at the same time will update the 
 " location in the document so you can see exactly where the tag is located
 " <leader>td to open
@@ -141,22 +143,27 @@ Plugin 'tpope/vim-repeat.git'
 Plugin 'vim-scripts/TaskList.vim.git'
 
 " This plugin is a front for the Perl module App::Ack. 
+" Activate with <leader>a
 " Ack can be used as a replacement for 99% of the uses of grep. 
 " This plugin will allow you to run ack from vim, and shows the results in a split window.
 Plugin 'mileszs/ack.vim.git'
 
 " This Vim plugin will pull C++ ptototypes into the implementation file
-Plugin 'derekwyatt/vim-protodef.git'
+" Plugin 'derekwyatt/vim-protodef.git'
 
 " fast moving <leader><leader>w W b B j k
 Plugin 'Lokaltog/vim-easymotion' 
 
+" HTML expand
 " You can write HTML in a CSS-like syntax, and have Sparkup handle the
 " expansion to full HTML code.
-" http://github.com/rstacruz/sparkup
-"source ~/.vim/bundle/sparkup/vim/ftplugin/html/sparkup.vim
+"   http://github.com/rstacruz/sparkup
+" write something like
+"   table.myclass>tr*4>td*2
+" then <C-e><C-e>
 Plugin 'rstacruz/sparkup'
 
+" HTML expand
 " emmet: <c-y>, to expand and <c-y>n for next field (<c-y>N prev field)
 " (expand is also mapped to <c-e>)
 Plugin 'mattn/emmet-vim.git'
@@ -164,6 +171,10 @@ Plugin 'mattn/emmet-vim.git'
 " Supertab is a vim plugin which allows you to use <Tab> for all your insert 
 " completion needs (:help ins-completion).
 Plugin 'ervandew/supertab.git'
+
+" YouCompleteMe
+" fast, as-you-type, fuzzy-search code completion engine for Vim
+Plugin 'Valloric/YouCompleteMe.git'
 
 " Tabularize text.
 "  :Tabularize /,/r1c1l0
@@ -174,12 +185,17 @@ Plugin 'godlygeek/tabular.git'
 
 "Plugin 'drmingdrmer/xptemplate.git'
 
-" snippets
-"Plugin 'msanders/snipmate.vim.git'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
+" Snipmate snippets
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'tomtom/tlib_vim'
+"Plugin 'honza/vim-snippets'
+"Plugin 'garbas/vim-snipmate'
+
+" Ultisnips (requires python)
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
-Plugin 'garbas/vim-snipmate'
+
 
 " comment lines
 "   gcc         => comment current line
@@ -199,7 +215,7 @@ Plugin 'majutsushi/tagbar.git'
 " SrcExpl (Source Explorer) is a source code explorer that provides 
 " context for the currently selected keyword by displaying the function 
 " or type definition or declaration in a separate window
-Plugin 'wesleyche/SrcExpl.git'
+"Plugin 'wesleyche/SrcExpl.git'
 
 " bottom line on steroids :)
 Plugin 'Lokaltog/vim-powerline.git'
@@ -231,6 +247,7 @@ Plugin 'nelstrom/vim-qargs'
 Plugin 'embear/vim-localvimrc' 
 
 " Gundo is a Vim plugin for visualizing your undo tree to make it usable.
+" <F5> to toggle
 Plugin 'sjl/gundo.vim.git'
 
 " shows marks
@@ -240,6 +257,17 @@ Plugin 'sjl/gundo.vim.git'
 " F6 == create
 Plugin 'DoxygenToolkit.vim'
 
+" Format code with external formatting programs to achieve the best results
+" Activate with <F3>
+" see: https://github.com/Chiel92/vim-autoformat
+" Default formatprograms:
+"     - clang-format for C, C++, Objective-C
+"     - astyle for C#, C++, C and Java
+"     - autopep8 for Python
+"     - js-beautify for Javascript and JSON
+"     - tidy or html-beautify for HTML
+"     - css-beautify for CSS
+Plugin 'Chiel92/vim-autoformat'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -263,7 +291,7 @@ filetype plugin on
 filetype indent on
 filetype plugin indent on
 
-" Set mapleader to a more accessible key
+" Set mapleader to a more accessible key in italian keyboard
 let mapleader = "ò"
 
 "set exrc
@@ -365,6 +393,7 @@ set fillchars=diff:⣿,vert:│
 " automatically read a file that has changed on disk
 "set autoread
 
+" Round indent to multiple of 'shiftwidth'.  Applies to > and < commands
 set shiftround
 set title
 set linebreak
@@ -417,6 +446,8 @@ set wrapscan
 set ignorecase
 "set noignorecase
 
+" Override the 'ignorecase' option if the search pattern contains upper
+" case characters.
 set smartcase
 "set gdefault
 
@@ -428,7 +459,7 @@ set sidescrolloff=10
 
 " Allow the cursor to go in to "invalid" places
 set virtualedit=all
-set virtualedit+=block
+"set virtualedit+=block
 
 if has("win16") || has("win32") || has("win64")
     set noshellslash
@@ -478,6 +509,10 @@ nnoremap J mzJ`z
 " The normal use of S is covered by cc, so don't worry about shadowing it.
 nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>`w
 
+" move selected block up/down in Visual block mode
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 " control-up and control-down to drag lines in any mode
 noremap <C-Down> :m+<CR>
 noremap <C-Up> :m-2<CR>
@@ -494,9 +529,9 @@ vnoremap <C-Up> :m-2<CR>gv
 " in milliseconds.
 "
 " i.e. for the "<leader>d" command, there is a "timeoutlen" wait period between the
-"      "<leader>" key and the "d" key.  If the "d" key isn't pressed before the
-"      timeout expires, one of two things happens: The "<leader>" command is executed
-"      if there is one (which there isn't) or the command aborts.
+" "<leader>" key and the "d" key. If the "d" key isn't pressed before the
+" timeout expires, one of two things happens: The "<leader>" command is executed
+" if there is one (which there isn't) or the command aborts.
 set timeoutlen=500
 
 " Disable encryption (:X)
@@ -526,6 +561,22 @@ set grepprg=grep\ -nH\ $*
 " make line (if necessary override in local .vimrc file)
 set makeprg=make\ -C\ ./build\ VERBOSE=1
 
+" highlight matching braces
+set matchtime=3
+set showmatch
+
+" I don't like it when the matching parens are automatically highlighted
+"let loaded_matchparen = 1
+"hi MatchParen gui=reverse term=reverse
+
+" Disable the current line and column highlight
+" Don't do this - It makes window redraw slow
+set nocursorline
+set nocursorcolumn
+
+" Initial path seeding
+set path=
+set tags=
 
 " }}}
 
@@ -557,16 +608,11 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.spl                            " compiled spelling word lists
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
-
 set wildignore+=*.luac                           " Lua byte code
-
 set wildignore+=migrations                       " Django migrations
 set wildignore+=*.pyc                            " Python byte code
-
 set wildignore+=*.orig                           " Merge resolution files
-
-" Clojure/Leiningen
-set wildignore+=classes
+set wildignore+=classes                          " Clojure/Leiningen
 set wildignore+=lib
 
 " }}}
@@ -616,7 +662,7 @@ endif
 " Ack {{{
 
 " Ack (quick grep search)
-nmap <leader>a <Esc>:Ack!
+nmap <leader>a <Esc>:Ack!<Space>
 
 " }}}
 
@@ -726,17 +772,15 @@ let g:SrcExpl_updateTagsKey = "<F11>"
 "}}}
 
 " TaskList {{{
-
 let g:tlTokenList = ['FIXME', 'TODO', 'XXX', 'ROBY']
-
 "}}}
 
 " Conque Settings {{{
-let g:ConqueTerm_FastMode = 1
-let g:ConqueTerm_ReadUnfocused = 1
-let g:ConqueTerm_InsertOnEnter = 1
-let g:ConqueTerm_PromptRegex = '^-->'
-let g:ConqueTerm_TERM = 'xterm'
+"let g:ConqueTerm_FastMode = 1
+"let g:ConqueTerm_ReadUnfocused = 1
+"let g:ConqueTerm_InsertOnEnter = 1
+"let g:ConqueTerm_PromptRegex = '^-->'
+"let g:ConqueTerm_TERM = 'xterm'
 "}}}
 
 " SuperTab Settings {{{
@@ -810,7 +854,7 @@ let g:clang_close_preview=0 " close preview window after completion
 
 " syntastic {{{
 let g:syntastic_loc_list_height=5
-let g:syntastic_cpp_checkers=['gcc']
+let g:syntastic_cpp_checkers=['clang_check', 'cppcheck', 'gcc']
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_cpp_compiler = 'clang++'
@@ -819,11 +863,20 @@ nmap <leader>err :Errors<CR>
 
 " YouCompleteMe {{{
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " }}}
 
 " snipmate {{{
-imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
-smap <C-J> <Plug>snipMateNextOrTrigger
+"imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
+"smap <C-J> <Plug>snipMateNextOrTrigger
 " }}}
 
 " tagbar {{{
@@ -834,33 +887,54 @@ let g:tagbar_show_linenumbers = 1
 let g:tagbar_width = 40
 " }}}
 
+" autoformat {{{
+
+" to disable the fallback to vim's indent file, retabbing and removing trailing 
+" whitespace, set the following variables to 0.
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+
+" to disable for certain type of files
+" autocmd FileType vim,tex let b:autoformat_autoindent=0
+
+" to debug use this
+" let g:autoformat_verbosemode=1
+
+" custom formatting options
+" let g:formatdef_my_custom_cs = '"astyle --mode=cs --style=ansi -pcHs4"'
+" let g:formatters_cs = ['my_custom_cs']
+
+" }}}
+
+
 " }}}
 
 " Edit "next" and "last" {{{
 
-onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
-xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
-onoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
-xnoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
+"onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
+"xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
+"onoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
+"xnoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
 
-onoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
-xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
-onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
-xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
+"onoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
+"xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
+"onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
+"xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
 
-function! s:NextTextObject(motion, dir)
-    let c = nr2char(getchar())
+"function! s:NextTextObject(motion, dir)
+"    let c = nr2char(getchar())
 
-    if c ==# "b"
-        let c = "("
-    elseif c ==# "B"
-        let c = "{"
-    elseif c ==# "r"
-        let c = "["
-    endif
+"    if c ==# "b"
+"        let c = "("
+"    elseif c ==# "B"
+"        let c = "{"
+"    elseif c ==# "r"
+"        let c = "["
+"    endif
 
-    exe "normal! ".a:dir.c."v".a:motion.c
-endfunction
+"    exe "normal! ".a:dir.c."v".a:motion.c
+"endfunction
 
 " }}}
 
@@ -918,7 +992,7 @@ nnoremap <silent> <leader>6ò :call HiInterestingWord(6,0)<cr>
 
 " }}}
 
-" Default Highlights {{{
+" Default Highlights Colors {{{
 
 hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
 hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
@@ -1102,8 +1176,7 @@ augroup END
 
 augroup ft_java
     au!
-
-    au FileType java setlocal foldmethod=marker
+    au FileType java setlocal foldmethod=syntax
     au FileType java setlocal foldmarker={,}
 augroup END
 
@@ -1149,8 +1222,9 @@ augroup END
 augroup ft_python
     au!
 
+    au FileType python setlocal foldmethod=indent
     au FileType python setlocal define=^\s*\\(def\\\\|class\\)
-    au FileType man nnoremap <buffer> <cr> :q<cr>
+    "au FileType man nnoremap <buffer> <cr> :q<cr>
 
     " Jesus tapdancing Christ, built-in Python syntax, you couldn't let me
     " override this in a normal way, could you?
@@ -1173,12 +1247,14 @@ nnoremap <space> za
 " }}}
 
 " spellcheck dictionary {{{
+
 set dictionary=/usr/share/dict/italian
 set spellfile=~/.vim/spellfile.add
 "set spellfile=~/.vim/custom-dictionary.utf-8.add
 " Don't move on * or #
 nnoremap * *<c-o>
 nnoremap # #<c-o>
+
 "}}}
 
 " Set the status line the way i like it {{{
@@ -1218,6 +1294,9 @@ nnoremap <F2> :w<CR>
 " in insert mode F2 will exit insert, save, enters insert again
 inoremap <F2> <ESC>:w<CR>a
 
+" auto format with external program
+noremap <F3> :Autoformat<CR>
+
 " goto next error with <F4>
 nnoremap <F4> :cnext<cr>zvzz
 " goto prev error with <S-F4>
@@ -1238,7 +1317,6 @@ noremap <S-F8> :make clean all<CR>
 
 " toggle tagbar
 noremap <silent> <F9> :TagbarToggle<CR>
-
 
 " toggle source explorer
 noremap <silent> <S-F9> :SrcExplToggle<CR>
@@ -1327,7 +1405,7 @@ nnoremap <silent> <leader>h :nohlsearch<CR>
 " syntax highlighting group that the current "thing" under the cursor
 " belongs to -- very useful for figuring out what to change as far as 
 " syntax highlighting goes.
-nnoremap <silent> <leader>qq :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+"nnoremap <silent> <leader>qq :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " Make shift-insert work like in Xterm
 noremap <S-Insert> <MiddleMouse>
@@ -1516,26 +1594,9 @@ nnoremap <silent> <C-PageUp> :bp<CR>
     "let @@ = reg_save
 "endfunction
 
-
-" highlight matching braces
-set matchtime=3
-set showmatch
 "inoremap } }<Left><c-o>%<c-o>:sleep 200m<CR><c-o>%<c-o>l
 "inoremap ] ]<Left><c-o>%<c-o>:sleep 200m<CR><c-o>%<c-o>l
 "inoremap ) )<Left><c-o>%<c-o>:sleep 200m<CR><c-o>%<c-o>l
-
-" I don't like it when the matching parens are automatically highlighted
-"let loaded_matchparen = 1
-"hi MatchParen gui=reverse term=reverse
-
-" Disable the current line and column highlight
-" Don't do this - It makes window redraw slow
-set nocursorline
-set nocursorcolumn
-
-" Initial path seeding
-set path=
-set tags=
 
 " remap indentation to keep visual selection
 vnoremap > >gv
@@ -1554,7 +1615,7 @@ nmap <silent> <leader>oJ :FSSplitBelow<CR>
 
 "}}}
 
-" Functions {{{
+" Functions and relative keymappings {{{
 
 if !exists('g:bufferJumpList')
     let g:bufferJumpList = {}
@@ -1578,15 +1639,6 @@ function! ListJumpToBuffers()
     endfor
 endfunction
 
-function! IndentToNextBraceInLineAbove()
-    :normal 0wk
-    :normal "vyf(
-    let @v = substitute(@v, '.', ' ', 'g')
-    :normal j"vPl
-endfunction
-
-nmap <silent> <leader>ii :call IndentToNextBraceInLineAbove()<cr>
-
 nmap <silent> <leader>mbA :call MarkBufferInJumpList(expand('%:p'), 'a')<cr>
 nmap <silent> <leader>mbB :call MarkBufferInJumpList(expand('%:p'), 'b')<cr>
 nmap <silent> <leader>mbC :call MarkBufferInJumpList(expand('%:p'), 'c')<cr>
@@ -1602,6 +1654,15 @@ nmap <silent> <leader>jbE :call JumpToBufferInJumpList('e')<cr>
 nmap <silent> <leader>jbF :call JumpToBufferInJumpList('f')<cr>
 nmap <silent> <leader>jbG :call JumpToBufferInJumpList('g')<cr>
 nmap <silent> <leader>ljB :call ListJumpToBuffers()<cr>
+
+function! IndentToNextBraceInLineAbove()
+    :normal 0wk
+    :normal "vyf(
+    let @v = substitute(@v, '.', ' ', 'g')
+    :normal j"vPl
+endfunction
+
+nmap <silent> <leader>ii :call IndentToNextBraceInLineAbove()<cr>
 
 function! DiffCurrentFileAgainstAnother(snipoff, replacewith)
     let currentFile = expand('%:p')
@@ -1629,41 +1690,38 @@ function! HighlightAllOfWord(onoff)
         match none /\<%s\>/
     endif
 endfunction
+noremap <leader>ha :call HighlightAllOfWord(1)<cr>
+noremap <leader>hA :call HighlightAllOfWord(0)<cr>
 
-noremap <leader>Ha :call HighlightAllOfWord(1)<cr>
-noremap <leader>HA :call HighlightAllOfWord(0)<cr>
-
-function! LengthenCWD()
-    let cwd = getcwd()
-    if cwd == '/'
-        return
-    endif
-    let lengthend = substitute(cwd, '/[^/]*$', '', '')
-    if lengthend == ''
-        let lengthend = '/'
-    endif
-    if cwd != lengthend
-        exec ":lcd " . lengthend
-    endif
-endfunction
-
+"function! LengthenCWD()
+    "let cwd = getcwd()
+    "if cwd == '/'
+        "return
+    "endif
+    "let lengthend = substitute(cwd, '/[^/]*$', '', '')
+    "if lengthend == ''
+        "let lengthend = '/'
+    "endif
+    "if cwd != lengthend
+        "exec ":lcd " . lengthend
+    "endif
+"endfunction
 "nmap <leader>ld :call LengthenCWD()<cr>
 
-function! ShortenCWD()
-    let cwd = split(getcwd(), '/')
-    let filedir = split(expand("%:p:h"), '/')
-    let i = 0
-    let newdir = ""
-    while i < len(filedir)
-        let newdir = newdir . "/" . filedir[i]
-        if len(cwd) == i || filedir[i] != cwd[i]
-            break
-        endif
-        let i = i + 1
-    endwhile
-    exec ":lcd /" . newdir
-endfunction
-
+"function! ShortenCWD()
+    "let cwd = split(getcwd(), '/')
+    "let filedir = split(expand("%:p:h"), '/')
+    "let i = 0
+    "let newdir = ""
+    "while i < len(filedir)
+        "let newdir = newdir . "/" . filedir[i]
+        "if len(cwd) == i || filedir[i] != cwd[i]
+            "break
+        "endif
+        "let i = i + 1
+    "endwhile
+    "exec ":lcd /" . newdir
+"endfunction
 "nmap <leader>sd :call ShortenCWD()<cr>
 
 function! RedirToYankRegisterF(cmd, ...)
@@ -1676,43 +1734,42 @@ endfunction
 command! -complete=command -nargs=+ RedirToYankRegister 
             \ silent! call RedirToYankRegisterF(<f-args>)
 
-function! ToggleMinimap()
-    if exists("s:isMini") && s:isMini == 0
-        let s:isMini = 1
-    else
-        let s:isMini = 0
-    end
+"function! ToggleMinimap()
+    "if exists("s:isMini") && s:isMini == 0
+        "let s:isMini = 1
+    "else
+        "let s:isMini = 0
+    "end
 
-    if (s:isMini == 0)
-        " save current visible lines
-        let s:firstLine = line("w0")
-        let s:lastLine = line("w$")
+    "if (s:isMini == 0)
+        "" save current visible lines
+        "let s:firstLine = line("w0")
+        "let s:lastLine = line("w$")
 
-        " make font small
-        exe "set guifont=" . g:small_font
-        " highlight lines which were visible
-        let s:lines = ""
-        for i in range(s:firstLine, s:lastLine)
-            let s:lines = s:lines . "\\%" . i . "l"
+        "" make font small
+        "exe "set guifont=" . g:small_font
+        "" highlight lines which were visible
+        "let s:lines = ""
+        "for i in range(s:firstLine, s:lastLine)
+            "let s:lines = s:lines . "\\%" . i . "l"
 
-            if i < s:lastLine
-                let s:lines = s:lines . "\\|"
-            endif
-        endfor
+            "if i < s:lastLine
+                "let s:lines = s:lines . "\\|"
+            "endif
+        "endfor
 
-        exe 'match Visible /' . s:lines . '/'
-        hi Visible guibg=lightblue guifg=black term=bold
-        nmap <s-j> 10j
-        nmap <s-k> 10k
-    else
-        exe "set guifont=" . g:main_font
-        hi clear Visible
-        nunmap <s-j>
-        nunmap <s-k>
-    endif
-endfunction
-
-command! ToggleMinimap call ToggleMinimap()
+        "exe 'match Visible /' . s:lines . '/'
+        "hi Visible guibg=lightblue guifg=black term=bold
+        "nmap <s-j> 10j
+        "nmap <s-k> 10k
+    "else
+        "exe "set guifont=" . g:main_font
+        "hi clear Visible
+        "nunmap <s-j>
+        "nunmap <s-k>
+    "endif
+"endfunction
+"command! ToggleMinimap call ToggleMinimap()
 
 " I /literally/ never use this and it's pissing me off
 " nnoremap <space> :ToggleMinimap<CR>

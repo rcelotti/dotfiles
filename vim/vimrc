@@ -702,6 +702,12 @@ let g:Powerline_symbols = 'unicode'
 "let g:Powerline_colorscheme = 'badwolf'
 " }}}
 
+" pydocstring {{{
+
+nmap <silent> <C-m> <Plug>(pydocstring)
+
+" }}}
+"
 " Localvimrc {{{
 "let g:localvimrc_whitelist=''
 let g:localvimrc_sandbox=0
@@ -1313,12 +1319,6 @@ nnoremap <F12> <C-]>
 
 " }}}
 
-" command mode {{{
-
-" save readolny files
-cmap w!! w !sudo tee % >/dev/null
-
-" }}}
 
 " tab bar navigation {{{
 "nnoremap <C-S-tab> :tabprevious<CR>

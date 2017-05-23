@@ -647,6 +647,14 @@ endif
 " Ack (quick grep search)
 nmap <leader>a <Esc>:Ack!<Space>
 
+" Ack find in files for the word under the cursor and display matches
+nmap <silent> <leader>fif :Ack!<Space><C-r><C-w><CR>
+
+" Ack find in files for the WORD under the cursor and display matches
+" NOTE:no <CR> at the end because if WORD has special chars like '('
+" then these must be escaped 
+nmap <leader>FIF :Ack!<Space><C-r><C-a>
+
 " }}}
 
 " Emmet {{{
@@ -704,7 +712,8 @@ let g:Powerline_symbols = 'unicode'
 
 " pydocstring {{{
 
-nmap <silent> <C-m> <Plug>(pydocstring)
+let g:pydocstring_enable_mapping = 0
+nmap <silent> <leader>doc <Plug>(pydocstring)
 
 " }}}
 "

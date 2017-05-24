@@ -269,6 +269,13 @@ Plugin 'DoxygenToolkit.vim'
 "     - css-beautify for CSS
 Plugin 'Chiel92/vim-autoformat'
 
+" Targets.vim is a Vim plugin that adds various text objects to give you more
+" targets to operate on. It expands on the idea of simple commands 
+" like di' (delete inside the single quotes around the cursor) to give you
+" more opportunities to craft powerful commands that can be repeated reliably. 
+" One major goal is to handle all corner cases correctly.
+Plugin 'wellle/targets.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -933,6 +940,18 @@ function! s:NextTextObject(motion, dir)
 
     exe "normal! ".a:dir.c."v".a:motion.c
 endfunction
+
+" }}}
+
+" Add some new text-objexts to allow commands like di* di/ ci% etc {{{
+" Disabled, see targets plugin
+
+"for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '-', '#' ]
+    "execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
+    "execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+    "execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
+    "execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+"endfor
 
 " }}}
 

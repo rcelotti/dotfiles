@@ -36,6 +36,9 @@ Plugin 'gmarik/Vundle.vim'
 " fugitive.vim may very well be the best Git wrapper of all time
 Plugin 'tpope/vim-fugitive.git'
 
+" Speed up Vim by updating folds only when called-for.
+Plugin 'Konfekt/FastFold'
+
 " function library (used by other plugin for example FuzzyFinder)
 "Plugin 'vim-scripts/L9.git'
 
@@ -55,6 +58,10 @@ Plugin 'gorkunov/smartpairs.vim'
 " pydoc, pyflakes, pep8, mccabe libraries in vim to provide features 
 " like python code looking for bugs, refactoring and some other useful things.
 Plugin 'klen/python-mode.git'
+
+" SimpylFold aims to be exactly what its name suggests: simple, correct 
+" folding for Python.
+Plugin 'tmhedberg/SimpylFold'
 
 Plugin 'heavenshell/vim-pydocstring'
 

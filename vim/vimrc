@@ -57,7 +57,8 @@ Plugin 'gorkunov/smartpairs.vim'
 " Python-mode is a vim plugin that allows you to use the pylint, rope, 
 " pydoc, pyflakes, pep8, mccabe libraries in vim to provide features 
 " like python code looking for bugs, refactoring and some other useful things.
-Plugin 'klen/python-mode.git'
+"Plugin 'klen/python-mode.git'
+Plugin 'python-mode/python-mode.git'
 
 " SimpylFold aims to be exactly what its name suggests: simple, correct 
 " folding for Python.
@@ -1248,18 +1249,18 @@ augroup END
 
 " Python {{{
 
-augroup ft_python
-    au!
+"augroup ft_python
+    "au!
 
-    au FileType python setlocal define=^\s*\\(def\\\\|class\\)
-    au FileType man nnoremap <buffer> <cr> :q<cr>
+    "au FileType python setlocal define=^\s*\\(def\\\\|class\\)
+    "au FileType man nnoremap <buffer> <cr> :q<cr>
 
-    " Jesus tapdancing Christ, built-in Python syntax, you couldn't let me
-    " override this in a normal way, could you?
-    au FileType python if exists("python_space_error_highlight") | unlet python_space_error_highlight | endif
+    "" Jesus tapdancing Christ, built-in Python syntax, you couldn't let me
+    "" override this in a normal way, could you?
+    "au FileType python if exists("python_space_error_highlight") | unlet python_space_error_highlight | endif
 
-    au FileType python iabbrev <buffer> afo assert False, "Okay"
-augroup END
+    "au FileType python iabbrev <buffer> afo assert False, "Okay"
+"augroup END
 
 " }}}
 
@@ -1270,6 +1271,8 @@ augroup END
 "onoremap <F9> <C-C>za
 "vnoremap <F9> zf
 nnoremap <space> za
+nnoremap zl zr
+nnoremap zh zm
 "nnoremap <C-space> zM
 
 " }}}

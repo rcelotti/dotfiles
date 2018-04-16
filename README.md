@@ -15,6 +15,11 @@ The bash script "create_links.sh" will create symlinks automatically
 (and backup existing files) but if you prefer to do it manually here 
 is what must be linked.
 
+**Symlinks for bash aliases:**
+```console
+ln -s ~/dotfiles/bash/bash_aliases ~/.bash_aliases
+```
+
 **Symlinks for vim:**
 ```console
 ln -s ~/dotfiles/vim ~/.vim

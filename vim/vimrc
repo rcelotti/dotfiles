@@ -33,6 +33,14 @@ endif
 " let Vundle manage Vundle, required! 
 Plugin 'gmarik/Vundle.vim'
 
+" alternate-lite open alternate file in:
+" - current window with :A,
+" - in a horizontally split opened window with :AS,
+" - in a vertically split opened window with :AV,
+" - in a new tab with :AT.
+Plugin 'LucHermitte/lh-vim-lib'
+Plugin 'LucHermitte/alternate-lite'
+
 " fugitive.vim may very well be the best Git wrapper of all time
 Plugin 'tpope/vim-fugitive.git'
 
@@ -287,6 +295,13 @@ Plugin 'Chiel92/vim-autoformat'
 " more opportunities to craft powerful commands that can be repeated reliably. 
 " One major goal is to handle all corner cases correctly.
 Plugin 'wellle/targets.vim'
+
+" vim match-up: even better fist_oncoming navigate and highlight
+" matching words fist_oncoming modern matchit and matchparen replacement
+" Extends vim's % motion to language-specific words.
+" Adds motions g%, [%, ]%, and z%.
+" Combines these motions into convenient text objects i% and a%.
+Plugin 'andymass/vim-matchup'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -1792,13 +1807,6 @@ function! ToggleMinimap()
     end
 
     if (s:isMini == 0)
-        " save current visible lines
-        let s:firstLine = line("w0")
-        let s:lastLine = line("w$")
-
-        " make font small
-        exe "set guifont=" . g:small_font
-        " highlight lines which were visible
         let s:lines = ""
         for i in range(s:firstLine, s:lastLine)
             let s:lines = s:lines . "\\%" . i . "l"

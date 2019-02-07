@@ -7,7 +7,6 @@ function printError {
 
 function backupFile {
     filename="$1"
-    echo "XXXXXX ${filename}"
     if [[ -e ${filename} ]]; then
         num=1
         filename_bak="${filename}.${num}.bak"

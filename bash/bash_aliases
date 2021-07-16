@@ -12,6 +12,7 @@ alias du='du -ch'
 alias du1='du -ch --max-depth=1'
 alias du2='du -ch --max-depth=2'
 alias du3='du -ch --max-depth=3'
+alias tmux='tmux -2'
 
 # Start calculator with math support
 alias bc='bc -l'

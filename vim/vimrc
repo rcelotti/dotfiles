@@ -238,7 +238,9 @@ Plugin 'majutsushi/tagbar.git'
 "Plugin 'wesleyche/SrcExpl.git'
 
 " bottom line on steroids :)
-Plugin 'Lokaltog/vim-powerline.git'
+"Plugin 'Lokaltog/vim-powerline.git'
+Plugin 'vim-airline/vim-airline'
+Plugin 'edkolev/tmuxline.vim'
 
 " Indent Guides is a plugin for visually displaying indent levels in Vim.
 " Toggle with 
@@ -361,6 +363,15 @@ set backspace=indent,eol,start
 
 " show numbers
 set number
+
+" Show relative row numbers
+"set relativenumber
+
+augroup toggle_relative_number
+    autocmd InsertEnter * :setlocal norelativenumber
+    autocmd InsertLeave * :setlocal relativenumber
+augroup END
+
 
 " tell VIM to always put a status line in, even if there is only one window
 set laststatus=2
@@ -589,9 +600,6 @@ set clipboard+=unnamed
 " setup grep options (line numbers and filename)
 set grepprg=grep\ -nH\ $*
 
-" Show relative row numbers
-"set relativenumber
-
 " make line (if necessary override in local .vimrc file)
 set makeprg=make\ -C\ ./build\ VERBOSE=1
 
@@ -738,11 +746,19 @@ let NERDTreeShowBookmarks = 1
 " }}}
 
 " Powerline {{{
-let g:Powerline_symbols = 'unicode'
+"let g:Powerline_symbols = 'unicode'
 "let g:Powerline_symbols = 'fancy'
 "let g:Powerline_cache_enabled = 1
 "let g:Powerline_colorscheme = 'badwolf'
 " }}}
+
+" Airline {{{
+
+let g:airline_powerline_fonts = 1
+
+let g:tmuxline_preset = 'full'
+
+"}}}
 
 " pydocstring {{{
 
@@ -1530,7 +1546,7 @@ nnoremap <silent> <M-o> <C-W>>
 
 " Edit and source the .vimrc file
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
-nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :so $MYVIMRC <bar> :doautocmd BufRead<CR>
 
 " Make horizontal scrolling easier
 "nnoremap <silent> <C-o> 10zl
@@ -1908,4 +1924,4 @@ augroup END
 iab cosnt    const
 "}}}
 
-
+" vim:foldmethod=marker:foldlevel=0

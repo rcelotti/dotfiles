@@ -53,12 +53,12 @@ cd "${HOME}" || { printError "Cannot switch to home folder ${HOME}. Script abort
 echo "done!"
 echo ""
 
-createLink "bash aliases" ".bash_aliases" "dotfiles/bash/bash_aliases" || exit 1;
+createLink "bash aliases" ".bash_aliases" "dotfiles/bash/.bash_aliases" || exit 1;
 
 createLink "vim folder" ".vim" "dotfiles/vim" || exit 1;
-createLink "vim configuration file." ".vimrc" "dotfiles/vim/vimrc" || exit 1;
-createLink "gvim configuration file." ".gvimrc" "dotfiles/vim/gvimrc" || exit 1;
-createLink "jshint configuration file." ".jshintrc" "dotfiles/vim/jshintrc" || exit 1;
+createLink "vim configuration file." ".vimrc" "dotfiles/vim/.vimrc" || exit 1;
+createLink "gvim configuration file." ".gvimrc" "dotfiles/vim/.gvimrc" || exit 1;
+createLink "jshint configuration file." ".jshintrc" "dotfiles/vim/.jshintrc" || exit 1;
 
-createLink "tmux configuration file." ".tmux.conf" "dotfiles/tmux/tmux.conf" || exit 1;
-createLink "tmux-powerlinerc configuration file." ".tmux-powerlinerc" "dotfiles/tmux/tmux-powerlinerc" || exit 1;
+createLink "tmux configuration file." ".tmux.conf" "dotfiles/tmux/.tmux.conf" || exit 1;
+createLink "tmux-powerlinerc configuration file." ".tmux-powerlinerc" "dotfiles/tmux/.tmux-powerlinerc" || exit 1;

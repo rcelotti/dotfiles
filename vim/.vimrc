@@ -906,6 +906,7 @@ let g:syntastic_cpp_checkers=['gcc']
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_sh_shellcheck_args = "-x"
 nmap <leader>err :Errors<CR>
 " }}}
 

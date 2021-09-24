@@ -10,6 +10,15 @@ note: on windows install git and curl as shown here
 https://github.com/gmarik/vundle/wiki/Vundle-for-Windows
 
 
+## Update .bashrc
+Add this at the end of your .bashrc
+```console
+# Local customized path and environment settings, etc.
+if [[ -f ~/.bashrc_local ]]; then
+    . ~/.bashrc_local
+fi
+```
+
 ## Create symlinks
 The bash script "create_links.sh" will create symlinks automatically 
 (and backup existing files) but if you prefer to do it manually here 

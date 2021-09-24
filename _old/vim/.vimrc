@@ -365,7 +365,7 @@ set backspace=indent,eol,start
 set number
 
 " Show relative row numbers
-"set relativenumber
+set relativenumber
 
 augroup toggle_relative_number
     autocmd InsertEnter * :setlocal norelativenumber

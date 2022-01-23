@@ -1,6 +1,7 @@
 #!/bin/sh
 
-sudo apt-get install \
+PKG="\
+    ack \
     acpi \
     arandr \
     atool \
@@ -9,6 +10,7 @@ sudo apt-get install \
     autoconf-doc \
     automake \
     build-essential \
+    clang \
     cmake \
     cmake-data \
     compton \
@@ -90,17 +92,30 @@ sudo apt-get install \
     texlive-latex-extra \
     texlive-latex-recommended \
     texstudio \
+    tree \
     valac \
     vlc \
     x11-utils \
     xcb-proto \
+    xmodmap \
     xdotool \
+    xrandr \
     xsel \
     xutils-dev \
+    "
 
 # exa \
 # xorg-xinit \
 # i3-wm \
+
+if [ -x /usr/bin/yay ]; then
+	echo "install $PKG"
+	/usr/bin/yay -Syu --needed $PKG
+fi
+if [ -x /usr/bin/apt-get ]; then
+	sudo /usr/bin/apt-get install $PKG
+fi
+exit 0
 
 # Install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim \

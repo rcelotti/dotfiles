@@ -1,0 +1,22 @@
+## Add this at the end of main .bashrc file
+# if [ -f ~/dotfiles/bash/bash_profile ]; then
+# 	source ~/dotfiles/bash/bash_profile
+# fi
+
+# turn off bash monitor mode
+# (this avoids DONE output for background tasks)
+set +m
+
+# change caps lock to esc key
+# xmodmap -e "clear lock" #disable caps lock switch
+# xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
+
+setxkbmap -option 'caps:ctrl_modifier' &
+xcape -e 'Caps_Lock=Escape' &
+
+# Let there be color in grep!
+export GREP_OPTIONS=' — color=auto'
+
+# Set neo-vim as my default editor
+export EDITOR=nvim
+

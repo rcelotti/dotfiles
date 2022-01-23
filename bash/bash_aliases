@@ -1,0 +1,40 @@
+## Add this at the end of main .bashrc file
+# if [ -f ~/dotfiles/bash/bash_aliases ]; then
+# 	source ~/dotfiles/bash/bash_aliases
+# fi
+
+# update our debian/ubuntu box
+if [ -x apt ]; then
+    alias update='sudo -- sh -c "apt update && apt upgrade"'
+fi
+if [ -x yay ]; then
+    alias update='yay'
+fi
+ 
+# make grep output colorful 
+alias grep='grep --color=auto'
+
+alias l='ls -la'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias o='xdg-open'
+
+# yay
+alias yay_install='yay -S'
+alias yay_remove='yay -Rns'
+alias yay_update='yay -Syu'
+alias yay_cleanup='yay -Yc'
+alias yay_stats='yay -Ps'
+
+# GIT
+alias g='git'
+alias gst='git status'
+alias gcom='git commit -m'
+alias gclone='git clone'
+alias gsth='git stash'
+alias glg='git log'
+alias gu='git add -u'
+alias gall='git add .'
+
+

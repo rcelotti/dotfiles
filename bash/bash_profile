@@ -11,8 +11,8 @@ set +m
 # xmodmap -e "clear lock" #disable caps lock switch
 # xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
 
-setxkbmap -option 'caps:ctrl_modifier' &
-xcape -e 'Caps_Lock=Escape' &
+setxkbmap -option 'caps:ctrl_modifier'
+xcape -e 'Caps_Lock=Escape'
 
 # Let there be color in grep!
 export GREP_OPTIONS=' — color=auto'

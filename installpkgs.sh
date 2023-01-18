@@ -81,10 +81,12 @@ PKG="\
     pandoc \
     pkg-config \
     python3-xcbgen \
+    pulseaudio \
     ranger \
     redshift \
     rofi \
     scrot \
+    speech-dispatcher \
     stow \
     terminator \
     texlive \
@@ -115,6 +117,11 @@ fi
 if [ -x /usr/bin/apt-get ]; then
 	sudo /usr/bin/apt-get install $PKG
 fi
+
+# install pulse audio
+install_pulse
+sudo systemctl --user enable pulseaudio
+
 exit 0
 
 # Install vim-plug
